@@ -4,11 +4,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState({});
 
   return (
     <>
-      <AppRoute />
+      <AppRoute user={user} setUser={setUser} />
       <ToastContainer
         position="top-right"
         autoClose={5000}

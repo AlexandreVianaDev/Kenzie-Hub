@@ -5,14 +5,20 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-const AppRoute = () => {
+const AppRoute = ({ user, setUser }) => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        {/* <Route path="/" element={<Dashboard />} /> */}
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/login"
+          element={<Login user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/dashboard"
+          element={<Dashboard user={user} setUser={setUser} />}
+        />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </>
