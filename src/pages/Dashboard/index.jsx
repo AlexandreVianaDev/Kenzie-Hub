@@ -15,14 +15,12 @@ const Dashboard = ({ user, setUser }) => {
 
   const navigate = useNavigate();
 
-  console.log(user);
-
   useEffect(() => {
     const getUser = async () => {
       try {
         const headers = {
-          "Authorization" : `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        };
         const response = await api.get(`/profile`, { headers });
         setUser(await response.data);
       } catch (error) {
@@ -32,24 +30,11 @@ const Dashboard = ({ user, setUser }) => {
     getUser();
   }, []);
 
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     try {
-  //       const response = await api.get(`/users/${userID}`);
-  //       setUser(await response.data);
-  //     } catch (error) {
-  //       toast.error(error);
-  //     }
-  //   };
-  //   getUser();
-  // }, []);
-
   useEffect(() => {
     token.length === 0 ? navigate("/login") : null;
   }, [token]);
 
   const handleLogout = () => {
-    console.log("cliquei");
     localStorage.clear();
     navigate("/");
   };

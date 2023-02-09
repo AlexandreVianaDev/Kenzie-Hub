@@ -13,8 +13,8 @@ const StyledLink = styled(Link)`
   padding: 10px 22px;
 
   :hover {
-    background-color: var(--color-grey-2); 
+    background-color: var(--color-grey-2);
   }
-`
+`;
 
-export default StyledLink
+export default StyledLink;

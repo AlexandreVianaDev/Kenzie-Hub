@@ -28,4 +28,4 @@ const formSchema = yup
   })
   .required();
 
-  export default formSchema
+export default formSchema;

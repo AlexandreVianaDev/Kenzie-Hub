@@ -63,6 +63,6 @@ button {
 	border: none;
 	box-sizing: border-box;
 	cursor: pointer;
-}`
+}`;
 
-export default ResetStyle
+export default ResetStyle;
