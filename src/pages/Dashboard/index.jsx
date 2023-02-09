@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.svg";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
+import LinkSmall from "../../components/LinkSmall";
 import NavBar from "../../components/NavBar";
 import api from "../../services/api";
+import StyledDashboard from "./style";
 
 const Dashboard = ({ user, setUser }) => {
   const token = localStorage.getItem("@TOKEN") || "";
@@ -53,22 +55,22 @@ const Dashboard = ({ user, setUser }) => {
   };
 
   return (
-    <>
+    <StyledDashboard className="container">
       <NavBar>
         <img src={logo} alt="Kenzie Hub" />
         <button onClick={handleLogout}>Sair</button>
       </NavBar>
       <Header>
-        <h2>Olá, {user.name}</h2>
-        <p>{user.course_module}</p>
+        <h2 className="title-1">{`Olá, ${user?.name}`}</h2>
+        <p className="headline">{user?.course_module}</p>
       </Header>
       <main>
-        <h2>Que pena! Estamos em desenvolvimento</h2>
-        <p>
+        <h2 className="title-1">Que pena! Estamos em desenvolvimento</h2>
+        <p className="headline">
           Nossa aplicação está em desenvolvimento, em breve teremos novidades
         </p>
       </main>
-    </>
+    </StyledDashboard>
   );
 };
 

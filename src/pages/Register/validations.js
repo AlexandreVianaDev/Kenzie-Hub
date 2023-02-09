@@ -4,7 +4,7 @@ import * as yup from "yup";
 const formSchema = yup
   .object()
   .shape({
-    name: yup.string().required("Digite seu nome").matches(/[a-z]|[A-Z]/, "O nome só deve conter letras"),
+    name: yup.string().required("Digite seu nome"),
     email: yup
       .string()
       .required("Digite seu email")

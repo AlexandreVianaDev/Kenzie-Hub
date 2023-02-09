@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
-const Styled = styled.div``;
+const StyledPage404 = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 24px;
 
-export default Styled;
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
+        justify-content: center;
+    }
+`;
+
+export default StyledPage404;
