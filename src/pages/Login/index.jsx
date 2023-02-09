@@ -14,6 +14,7 @@ import LinkMedium from "../../components/LinkMedium";
 import StyledLogin from "./style";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
+import loadingAnim from "../../assets/images/loading.svg";
 
 const Login = ({ user, setUser }) => {
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,10 @@ const Login = ({ user, setUser }) => {
   useEffect(() => {
     token.length > 0 ? navigate("/dashboard") : null;
   }, []);
+
+  // useEffect(() =>{
+
+  // },[loading])
 
   const {
     register,
@@ -37,6 +42,7 @@ const Login = ({ user, setUser }) => {
   const onSubmitFunction = (data) => {
     const login = async () => {
       try {
+        setLoading(true);
         const response = await api.post("/sessions", data);
         console.log(response.data.user.id);
         setUser(response.data.user);
@@ -45,9 +51,13 @@ const Login = ({ user, setUser }) => {
         toast.success("Login realizado");
         navigate("/dashboard");
       } catch (error) {
-        error.response.data?.message === "Incorrect email / password combination" ? toast.error("Email ou senha incorretos") : (null);
+        error.response.data?.message ===
+        "Incorrect email / password combination"
+          ? toast.error("Email ou senha incorretos")
+          : null;
         // toast.error("Email ou senha incorretos")
       } finally {
+        setLoading(false);
       }
     };
     login();
@@ -55,9 +65,12 @@ const Login = ({ user, setUser }) => {
 
   return (
     <>
-     <StyledLogin className="container">
-        <Header><img src={logo} /></Header>     
+      <StyledLogin className="container">
+        <Header>
+          <img src={logo} />
+        </Header>
         <main>
+          {loading ? <img className="loading" src={loadingAnim} /> : null}
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <h2 className="title-3">Login</h2>
             <label htmlFor="email">Email</label>
@@ -79,10 +92,12 @@ const Login = ({ user, setUser }) => {
             />
             <p className="field__error">{errors.password?.message}</p>
             <Button>Entrar</Button>
-            <p className="headline-bold text-center">Ainda não possui uma conta?</p>
+            <p className="headline-bold text-center">
+              Ainda não possui uma conta?
+            </p>
             <LinkMedium to="/register">Cadastre-se</LinkMedium>
           </form>
-      </main>
+        </main>
       </StyledLogin>
     </>
   );
