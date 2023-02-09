@@ -8,8 +8,8 @@ import ResetStyle from "./styles/reset";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ResetStyle/>
-      <GlobalStyle/>
+      <ResetStyle />
+      <GlobalStyle />
       <App />
     </BrowserRouter>
   </React.StrictMode>

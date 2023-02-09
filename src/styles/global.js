@@ -52,8 +52,8 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body * {
-    font-family: var(--font-family-1);
-    color: var(--color-grey-0);
+  font-family: var(--font-family-1);
+  color: var(--color-grey-0);
   font-size: var(--font-2);
   font-weight: var(--font-weight-3);
   line-height: var(--line-heigth-2);
@@ -107,21 +107,27 @@ body {
 
 .headline-bold {
   color: var(--color-grey-1);
-    font-size: var(--font-4);
+  font-size: var(--font-4);
   font-weight: var(--font-weight-2);
   line-height: var(--line-heigth-5);
 }
 
 .headline-italic {
   color: var(--color-grey-1);
-    font-size: var(--font-4);
+  font-size: var(--font-4);
   font-weight: var(--font-weight-3);
   line-height: var(--line-heigth-5);
   font-style: italic;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
+}
+
+.loading {
+  position: absolute;
+  /* top: calc(vw/2); */
+  margin: 0 auto;
 }
 
 button {
@@ -152,73 +158,65 @@ button:disabled {
 
 /* COMPONENTIZAR AQUI EM DIANTE */
 form {
-    background-color: var(--color-grey-3);
-    border-radius: var(--radius-1);
-    padding: 32px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
+  background-color: var(--color-grey-3);
+  border-radius: var(--radius-1);
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
 form > h2 {
-    text-align: center;
+  text-align: center;
 }
 
 form > label {
-    font-size: var(--font-4);
+  font-size: var(--font-4);
   font-weight: var(--font-weight-3);
   line-height: var(--line-heigth-4);
 }
 
 form > input {
-    background-color: var(--color-grey-2);
-    border: 1px solid var(--color-grey-2);
-    border-radius: var(--radius-1);
-    padding: 8px 14px;
-    color: var(--color-grey-0);
+  background-color: var(--color-grey-2);
+  border: 1px solid var(--color-grey-2);
+  border-radius: var(--radius-1);
+  padding: 8px 14px;
+  color: var(--color-grey-0);
 }
 
 form > input:hover, form > input:focus {
-    border: 1px solid var(--color-grey-0);
+  border: 1px solid var(--color-grey-0);
 }
 
 form > p {
-    color: var(--color-grey-1);
+  color: var(--color-grey-1);
 }
 
 .field__error {
-    color: var(--color-negative);
-    font-size: var(--font-4);
+  color: var(--color-negative);
+  font-size: var(--font-4);
 }
 
 form > .select__container {
-    width: 100%;
-    background-color: var(--color-grey-2);
-    border: 1px solid var(--color-grey-2);
-    border-radius: var(--radius-1);
-    padding: 8px 14px;
-    color: var(--color-grey-0);
+  width: 100%;
+  background-color: var(--color-grey-2);
+  border: 1px solid var(--color-grey-2);
+  border-radius: var(--radius-1);
+  padding: 8px 14px;
+  color: var(--color-grey-0);
 }
 
 form > .select__container > select {
-    width: 100%;
-    background-color: var(--color-grey-2);
-    border: none;
+  width: 100%;
+  background-color: var(--color-grey-2);
+  border: none;
 }
 
 form > .select__container > select > option {
-    color: var(--color-grey-0);
-    border: none;
+  color: var(--color-grey-0);
+  border: none;
 }
-
-@media screen and (min-width: 369px) {
-
-}
-
-
-
-
 `;
 
 export default GlobalStyle;
