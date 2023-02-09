@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import Form from "../../components/Form";
 import Input from "../../components/Input";
@@ -10,10 +10,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import formSchema from "./validations";
-
-
+import LinkSmall from "../../components/LinkSmall";
+import StyledRegister from "./style";
+import Header from "../../components/Header";
 
 const Register = () => {
+  const [disabled, setDisabled] = useState(false);
+
   const token = localStorage.getItem("@TOKEN") || "";
   const userID = localStorage.getItem("@USERID") || "";
 
@@ -48,95 +51,97 @@ const Register = () => {
   };
 
   return (
-    <main>
-      <div className="container">
-        <div>
-          <img src={logo} alt="Kenzie Hub" />
-          <Link to="/login">Voltar</Link>
-        </div>
-        <form onSubmit={handleSubmit(onSubmitFunction)}>
-          <h2>Crie sua conta</h2>
-          <p>Rapido e grátis, vamos nessa</p>
-          <label htmlFor="name">Nome</label>
-          <input
-            label="Nome"
-            type="text"
-            placeholder="Digite aqui seu nome"
-            id="name"
-            {...register("name")}
-          />
-          <p>{errors.name?.message}</p>
-          <label htmlFor="email">Email</label>
-          <input
-            label="Email"
-            type="text"
-            placeholder="Digite aqui seu email"
-            id="email"
-            {...register("email")}
-          />
-          <p>{errors.email?.message}</p>
-          <label htmlFor="password">Senha</label>
-          <input
-            label="Senha"
-            type="password"
-            placeholder="Digite aqui sua senha"
-            id="password"
-            {...register("password")}
-          />
-          <p>{errors.password?.message}</p>
-          <label htmlFor="confirmPassword">Confirmar senha</label>
-          <input
-            label="Confirmar Senha"
-            type="password"
-            placeholder="Digite aqui sua senha"
-            id="confirmPassword"
-            {...register("confirmPassword")}
-          />
-          <p>{errors.confirmPassword?.message}</p>
-          <label htmlFor="bio">Bio</label>
-          <input
-            label="Bio"
-            type="text"
-            placeholder="Fale sobre você"
-            id="bio"
-            {...register("bio")}
-          />
-          <p>{errors.bio?.message}</p>
-          <label htmlFor="contact">Contato</label>
-          <input
-            label="Contato"
-            type="text"
-            placeholder="Opção de contato"
-            id="contact"
-            {...register("contact")}
-          />
-          <p>{errors.contact?.message}</p>
-          <label htmlFor="course_module">Selecionar módulo</label>
-          <select
-            label="Selecionar módulo"
-            type="text"
-            placeholder="Digite aqui seu nome"
-            id="course_module"
-            {...register("course_module")}
-          >
-            <option value="Primeiro módulo (Introdução ao Frontend)">
-              Primeiro Módulo
-            </option>
-            <option value="Segundo módulo (Frontend Avançado)">
-              Segundo Módulo
-            </option>
-            <option value="Terceiro módulo (Introdução ao Backend)">
-              Terceiro Módulo
-            </option>
-            <option value="Quarto módulo (Backend Avançado)">
-              Quarto Módulo
-            </option>
-          </select>
-          <p>{errors.course_module?.message}</p>
-          <Button>Cadastrar</Button>
-        </form>
-      </div>
-    </main>
+    <StyledRegister className="container">
+      <Header>
+        <img src={logo} alt="Kenzie Hub" />
+        <LinkSmall to={"/login"}>Voltar</LinkSmall>
+      </Header>
+      <main>
+          <form onSubmit={handleSubmit(onSubmitFunction)}>
+            <h2 className="title-1">Crie sua conta</h2>
+            <p className="headline text-center">Rapido e grátis, vamos nessa</p>
+            <label htmlFor="name">Nome</label>
+            <input
+              label="Nome"
+              type="text"
+              placeholder="Digite aqui seu nome"
+              id="name"
+              {...register("name")}
+            />
+            <p className="field__error">{errors.name?.message}</p>
+            <label htmlFor="email">Email</label>
+            <input
+              label="Email"
+              type="text"
+              placeholder="Digite aqui seu email"
+              id="email"
+              {...register("email")}
+            />
+            <p className="field__error">{errors.email?.message}</p>
+            <label htmlFor="password">Senha</label>
+            <input
+              label="Senha"
+              type="password"
+              placeholder="Digite aqui sua senha"
+              id="password"
+              {...register("password")}
+            />
+            <p className="field__error">{errors.password?.message}</p>
+            <label htmlFor="confirmPassword">Confirmar senha</label>
+            <input
+              label="Confirmar Senha"
+              type="password"
+              placeholder="Digite aqui sua senha"
+              id="confirmPassword"
+              {...register("confirmPassword")}
+            />
+            <p className="field__error">{errors.confirmPassword?.message}</p>
+            <label htmlFor="bio">Bio</label>
+            <input
+              label="Bio"
+              type="text"
+              placeholder="Fale sobre você"
+              id="bio"
+              {...register("bio")}
+            />
+            <p className="field__error">{errors.bio?.message}</p>
+            <label htmlFor="contact">Contato</label>
+            <input
+              label="Contato"
+              type="text"
+              placeholder="Opção de contato"
+              id="contact"
+              {...register("contact")}
+            />
+            <p className="field__error">{errors.contact?.message}</p>
+            <label htmlFor="course_module">Selecionar módulo</label>
+            <div className="select__container">
+              <select
+                label="Selecionar módulo"
+                type="text"
+                placeholder="Digite aqui seu nome"
+                id="course_module"
+                {...register("course_module")}
+              >
+                <option value="Primeiro módulo (Introdução ao Frontend)">
+                  Primeiro Módulo
+                </option>
+                <option value="Segundo módulo (Frontend Avançado)">
+                  Segundo Módulo
+                </option>
+                <option value="Terceiro módulo (Introdução ao Backend)">
+                  Terceiro Módulo
+                </option>
+                <option value="Quarto módulo (Backend Avançado)">
+                  Quarto Módulo
+                </option>
+              </select>
+              <p className="field__error">{errors.course_module?.message}</p>
+            </div>
+            <Button disabled={disabled}>Cadastrar</Button>
+          </form>
+      </main>
+    </StyledRegister>
   );
 };
 
