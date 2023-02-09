@@ -1,12 +1,12 @@
 import React from "react";
 
-const Button = ({ children, to, disabled }) => {
+const Button = ({ children, disabled, type }) => {
   return disabled ? (
-    <button to={to} disabled>
+    <button type={type} disabled>
       {children}
     </button>
   ) : (
-    <button to={to}>{children}</button>
+    <button type={type}>{children}</button>
   );
 };
 
