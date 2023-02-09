@@ -10,6 +10,10 @@ import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import formSchema from "./validations";
+import LinkMedium from "../../components/LinkMedium";
+import StyledLogin from "./style";
+import Header from "../../components/Header";
+import NavBar from "../../components/NavBar";
 
 const Login = ({ user, setUser }) => {
   const [loading, setLoading] = useState(false);
@@ -41,7 +45,7 @@ const Login = ({ user, setUser }) => {
         toast.success("Login realizado");
         navigate("/dashboard");
       } catch (error) {
-        toast.error(error.response.data.message);
+        error.response.data?.message === "Incorrect email / password combination" ? toast.error("Email ou senha incorretos") : (null);
         // toast.error("Email ou senha incorretos")
       } finally {
       }
@@ -50,35 +54,37 @@ const Login = ({ user, setUser }) => {
   };
 
   return (
-    <main>
-      <div className="container">
-        <img src={logo} />
-        <form onSubmit={handleSubmit(onSubmitFunction)}>
-          <h2>Login</h2>
-          <label htmlFor="email">Email</label>
-          <input
-            label="Email"
-            type="text"
-            placeholder="Digite aqui seu email"
-            htmlFor="email"
-            {...register("email")}
-          />
-          <p>{errors.email?.message}</p>
-          <label htmlFor="password">Senha</label>
-          <input
-            label="Senha"
-            type="password"
-            placeholder="Digite aqui sua senha"
-            htmlFor="password"
-            {...register("password")}
-          />
-          <p>{errors.password?.message}</p>
-          <Button>Entrar</Button>
-          <p>Ainda não possui uma conta?</p>
-          <Link to="/register">Cadastre-se</Link>
-        </form>
-      </div>
-    </main>
+    <>
+     <StyledLogin className="container">
+        <Header><img src={logo} /></Header>     
+        <main>
+          <form onSubmit={handleSubmit(onSubmitFunction)}>
+            <h2 className="title-3">Login</h2>
+            <label htmlFor="email">Email</label>
+            <input
+              label="Email"
+              type="text"
+              placeholder="Digite aqui seu email"
+              htmlFor="email"
+              {...register("email")}
+            />
+            <p className="field__error">{errors.email?.message}</p>
+            <label htmlFor="password">Senha</label>
+            <input
+              label="Senha"
+              type="password"
+              placeholder="Digite aqui sua senha"
+              htmlFor="password"
+              {...register("password")}
+            />
+            <p className="field__error">{errors.password?.message}</p>
+            <Button>Entrar</Button>
+            <p className="headline-bold text-center">Ainda não possui uma conta?</p>
+            <LinkMedium to="/register">Cadastre-se</LinkMedium>
+          </form>
+      </main>
+      </StyledLogin>
+    </>
   );
 };
 

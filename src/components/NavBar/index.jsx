@@ -1,7 +1,8 @@
 import React from "react";
+import StyledNavBar from "./style";
 
 const NavBar = ({ children }) => {
-  return <nav>{children}</nav>;
+  return <StyledNavBar>{children}</StyledNavBar>;
 };
 
 export default NavBar;
