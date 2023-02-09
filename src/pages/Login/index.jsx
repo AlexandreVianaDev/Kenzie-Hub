@@ -9,22 +9,17 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import formSchema from "./validations";
 
 const Login = ({ user, setUser }) => {
-  const [loading, setLoading] = useState(false)
-  
+  const [loading, setLoading] = useState(false);
+
   const token = localStorage.getItem("@TOKEN") || "";
   const userID = localStorage.getItem("@USERID") || "";
-
 
   useEffect(() => {
     token.length > 0 ? navigate("/dashboard") : null;
   }, []);
-
-  const formSchema = yup.object().shape({
-    email: yup.string().required("Digite seu email"),
-    password: yup.string().required("Digite sua senha"),
-  });
 
   const {
     register,
@@ -68,7 +63,7 @@ const Login = ({ user, setUser }) => {
             htmlFor="email"
             {...register("email")}
           />
-          {errors.email?.message}
+          <p>{errors.email?.message}</p>
           <label htmlFor="password">Senha</label>
           <input
             label="Senha"
@@ -77,7 +72,7 @@ const Login = ({ user, setUser }) => {
             htmlFor="password"
             {...register("password")}
           />
-          {errors.password?.message}
+          <p>{errors.password?.message}</p>
           <Button>Entrar</Button>
           <p>Ainda não possui uma conta?</p>
           <Link to="/register">Cadastre-se</Link>

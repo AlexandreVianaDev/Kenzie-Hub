@@ -18,7 +18,10 @@ const Dashboard = ({ user, setUser }) => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await api.get(`/users/${userID}`);
+        const headers = {
+          "Authorization" : `Bearer ${token}`
+        }
+        const response = await api.get(`/profile`, { headers });
         setUser(await response.data);
       } catch (error) {
         toast.error(error);
@@ -26,6 +29,18 @@ const Dashboard = ({ user, setUser }) => {
     };
     getUser();
   }, []);
+
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     try {
+  //       const response = await api.get(`/users/${userID}`);
+  //       setUser(await response.data);
+  //     } catch (error) {
+  //       toast.error(error);
+  //     }
+  //   };
+  //   getUser();
+  // }, []);
 
   useEffect(() => {
     token.length === 0 ? navigate("/login") : null;
