@@ -1,15 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
+import LinkMedium from "../../components/LinkMedium";
 import StyledPage404 from "./style";
 
 const Page404 = () => {
-  const navigate = useNavigate();
-
-  const handleReturn = () => {
-    navigate("/login");
-  };
-
   return (
     <StyledPage404>
       <main>
@@ -18,7 +11,7 @@ const Page404 = () => {
           Desculpe, mas a página que você está tentando acessar não foi
           encontrada.
         </p>
-        <button onClick={handleReturn}>Voltar para login</button>
+        <LinkMedium to={"/login"}>Voltar para login</LinkMedium>
       </main>
     </StyledPage404>
   );
