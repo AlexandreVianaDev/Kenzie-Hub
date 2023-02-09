@@ -9,6 +9,9 @@ import api from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import formSchema from "./validations";
+
+
 
 const Register = () => {
   const token = localStorage.getItem("@TOKEN") || "";
@@ -18,28 +21,6 @@ const Register = () => {
     token.length > 0 ? navigate("/dashboard") : null;
   }, []);
 
-  const formSchema = yup.object().shape({
-    name: yup.string().required("Digite seu nome"),
-    email: yup
-      .string()
-      .required("Digite seu email")
-      .email("Digite um email válido"),
-    password: yup
-      .string()
-      .required("Digite uma senha")
-      .min(8, "A senha deve conter pelo menos 8 dígitos")
-      .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-        "A senha deve conter letras e pelo menos um número e símbolo($*&@#)"
-      ),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "Senhas não coincidem"),
-    bio: yup.string().required("Digite uma bio"),
-    contact: yup.string().required("Digite um contato"),
-    course_module: yup.string().required("Escolha um módulo"),
-  });
-
   const {
     register,
     handleSubmit,
@@ -47,6 +28,7 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
+
   const navigate = useNavigate();
 
   const onSubmitFunction = (data) => {
@@ -58,7 +40,7 @@ const Register = () => {
         navigate("/login");
         toast.success("Cadastro realizado com sucesso");
       } catch (error) {
-        toast.error(error.response.data.message);
+        error.response.data.message === "Email already exists" ? toast.error("Email já existe") : (null)
       } finally {
       }
     };
@@ -83,7 +65,7 @@ const Register = () => {
             id="name"
             {...register("name")}
           />
-          {errors.name?.message}
+          <p>{errors.name?.message}</p>
           <label htmlFor="email">Email</label>
           <input
             label="Email"
@@ -92,7 +74,7 @@ const Register = () => {
             id="email"
             {...register("email")}
           />
-          {errors.email?.message}
+          <p>{errors.email?.message}</p>
           <label htmlFor="password">Senha</label>
           <input
             label="Senha"
@@ -101,15 +83,16 @@ const Register = () => {
             id="password"
             {...register("password")}
           />
-          {errors.password?.message}
+          <p>{errors.password?.message}</p>
           <label htmlFor="confirmPassword">Confirmar senha</label>
           <input
             label="Confirmar Senha"
             type="password"
             placeholder="Digite aqui sua senha"
             id="confirmPassword"
+            {...register("confirmPassword")}
           />
-          {errors.confirmPassword?.message}
+          <p>{errors.confirmPassword?.message}</p>
           <label htmlFor="bio">Bio</label>
           <input
             label="Bio"
@@ -118,7 +101,7 @@ const Register = () => {
             id="bio"
             {...register("bio")}
           />
-          {errors.bio?.message}
+          <p>{errors.bio?.message}</p>
           <label htmlFor="contact">Contato</label>
           <input
             label="Contato"
@@ -127,7 +110,7 @@ const Register = () => {
             id="contact"
             {...register("contact")}
           />
-          {errors.contact?.message}
+          <p>{errors.contact?.message}</p>
           <label htmlFor="course_module">Selecionar módulo</label>
           <select
             label="Selecionar módulo"
@@ -149,7 +132,7 @@ const Register = () => {
               Quarto Módulo
             </option>
           </select>
-          {errors.course_module && errors.course_module.message}
+          <p>{errors.course_module?.message}</p>
           <Button>Cadastrar</Button>
         </form>
       </div>
