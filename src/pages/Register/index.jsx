@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../components/Button";
-import Form from "../../components/Form";
 import Input from "../../components/Input";
 import logo from "../../assets/images/logo.svg";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import api from "../../services/api";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import formSchema from "./validations";
 import LinkSmall from "../../components/LinkSmall";
 import StyledRegister from "./style";
@@ -35,11 +33,9 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmitFunction = (data) => {
-    console.log(data);
     const registerUser = async () => {
       try {
         const response = await api.post("/users", data);
-        console.log(response);
         navigate("/login");
         toast.success("Cadastro realizado com sucesso");
       } catch (error) {
@@ -62,62 +58,56 @@ const Register = () => {
         <form onSubmit={handleSubmit(onSubmitFunction)}>
           <h2 className="title-1">Crie sua conta</h2>
           <p className="headline text-center">Rapido e grátis, vamos nessa</p>
-          <label htmlFor="name">Nome</label>
-          <input
+          <Input
             label="Nome"
             type="text"
             placeholder="Digite aqui seu nome"
             id="name"
             {...register("name")}
+            error={errors.name?.message}
           />
-          <p className="field__error">{errors.name?.message}</p>
-          <label htmlFor="email">Email</label>
-          <input
+          <Input
             label="Email"
             type="text"
             placeholder="Digite aqui seu email"
             id="email"
             {...register("email")}
+            error={errors.email?.message}
           />
-          <p className="field__error">{errors.email?.message}</p>
-          <label htmlFor="password">Senha</label>
-          <input
+          <Input
             label="Senha"
             type="password"
-            placeholder="Digite aqui sua senha"
+            placeholder="Digite aqui uma senha"
             id="password"
             {...register("password")}
+            error={errors.password?.message}
           />
-          <p className="field__error">{errors.password?.message}</p>
-          <label htmlFor="confirmPassword">Confirmar senha</label>
-          <input
-            label="Confirmar Senha"
+          <Input
+            label="Confirmar senha"
             type="password"
-            placeholder="Digite aqui sua senha"
+            placeholder="Digite novamente a senha"
             id="confirmPassword"
             {...register("confirmPassword")}
+            error={errors.confirmPassword?.message}
           />
-          <p className="field__error">{errors.confirmPassword?.message}</p>
-          <label htmlFor="bio">Bio</label>
-          <input
+          <Input
             label="Bio"
             type="text"
             placeholder="Fale sobre você"
             id="bio"
             {...register("bio")}
+            error={errors.bio?.message}
           />
-          <p className="field__error">{errors.bio?.message}</p>
-          <label htmlFor="contact">Contato</label>
-          <input
+          <Input
             label="Contato"
             type="text"
             placeholder="Opção de contato"
             id="contact"
             {...register("contact")}
+            error={errors.contact?.message}
           />
-          <p className="field__error">{errors.contact?.message}</p>
-          <label htmlFor="course_module">Selecionar módulo</label>
           <div className="select__container">
+            <label htmlFor="course_module">Selecionar módulo</label>
             <select
               label="Selecionar módulo"
               type="text"
