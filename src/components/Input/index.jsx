@@ -1,12 +1,20 @@
-import React from "react";
+import React, { forwardRef } from "react";
+import StyledInput from "./style";
 
-const Input = ({ label, type, placeholder, htmlFor }) => {
+const Input = ({ label, type, placeholder, id, error, ...rest }, ref) => {
   return (
-    <>
-      <label htmlFor={htmlFor}>{label}</label>
-      <input id={htmlFor} type={type} placeholder={placeholder} />
-    </>
+    <StyledInput>
+      <label htmlFor={id}>{label}</label>
+      <input
+        id={id}
+        type={type}
+        ref={ref}
+        placeholder={placeholder}
+        {...rest}
+      />
+      {error ? <p className="field__error">{error}</p> : null}
+    </StyledInput>
   );
 };
 
-export default Input;
+export default forwardRef(Input);

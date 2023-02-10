@@ -126,37 +126,9 @@ body {
 
 .loading {
   position: absolute;
-  /* top: calc(vw/2); */
   margin: 0 auto;
 }
 
-button {
-  font-size: var(--font-2);
-  font-weight: var(--font-weight-2);
-  line-height: var(--line-heigth-5);
-  border-radius: var(--radius-2);
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  padding: 10px 22px;
-}
-
-button:hover {
-    background-color: var(--color-primary-focus);
-}
-
-button:disabled {
-    background-color: var(--color-primary-negative);
-}
-
-.button-disabled {
-    background-color: var(--color-grey-1);
-}
-
-.button-disabled:hover {
-    background-color: var(--color-grey-2);
-}
-
-/* COMPONENTIZAR AQUI EM DIANTE */
 form {
   background-color: var(--color-grey-3);
   border-radius: var(--radius-1);
@@ -171,46 +143,28 @@ form > h2 {
   text-align: center;
 }
 
-form > label {
-  font-size: var(--font-4);
-  font-weight: var(--font-weight-3);
-  line-height: var(--line-heigth-4);
-}
-
-form > input {
-  background-color: var(--color-grey-2);
-  border: 1px solid var(--color-grey-2);
-  border-radius: var(--radius-1);
-  padding: 8px 14px;
-  color: var(--color-grey-0);
-}
-
-form > input:hover, form > input:focus {
-  border: 1px solid var(--color-grey-0);
-}
-
 form > p {
   color: var(--color-grey-1);
 }
 
-.field__error {
-  color: var(--color-negative);
+form > .select__container {
+  width: 100%;
+  color: var(--color-grey-0);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+form > .select__container > label {
   font-size: var(--font-4);
 }
 
-form > .select__container {
-  width: 100%;
+form > .select__container > select {
   background-color: var(--color-grey-2);
+  border: none;
   border: 1px solid var(--color-grey-2);
   border-radius: var(--radius-1);
   padding: 8px 14px;
-  color: var(--color-grey-0);
-}
-
-form > .select__container > select {
-  width: 100%;
-  background-color: var(--color-grey-2);
-  border: none;
 }
 
 form > .select__container > select > option {
