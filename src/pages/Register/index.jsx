@@ -55,7 +55,7 @@ const Register = () => {
         <LinkSmall to={"/login"}>Voltar</LinkSmall>
       </Header>
       <main>
-        <form onSubmit={handleSubmit(onSubmitFunction)}>
+        <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
           <h2 className="title-1">Crie sua conta</h2>
           <p className="headline text-center">Rapido e grátis, vamos nessa</p>
           <Input
