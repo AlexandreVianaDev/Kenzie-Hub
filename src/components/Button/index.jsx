@@ -1,12 +1,13 @@
 import React from "react";
+import StyledButton from "./style"
 
 const Button = ({ children, disabled, type }) => {
   return disabled ? (
-    <button type={type} disabled>
+    <StyledButton type={type} disabled>
       {children}
-    </button>
+    </StyledButton>
   ) : (
-    <button type={type}>{children}</button>
+    <StyledButton type={type}>{children}</StyledButton>
   );
 };
 

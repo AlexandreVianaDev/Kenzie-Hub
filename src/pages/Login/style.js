@@ -7,7 +7,6 @@ const StyledLogin = styled.div`
   justify-content: center;
   min-height: 100vh;
   gap: 24px;
-  /* padding-top: 60px; */
 
   > div {
     display: flex;
