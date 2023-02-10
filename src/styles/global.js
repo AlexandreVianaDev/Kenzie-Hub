@@ -129,7 +129,7 @@ body {
   margin: 0 auto;
 }
 
-form {
+.form {
   background-color: var(--color-grey-3);
   border-radius: var(--radius-1);
   padding: 32px 16px;
@@ -139,15 +139,15 @@ form {
   width: 100%;
 }
 
-form > h2 {
+.form > h2 {
   text-align: center;
 }
 
-form > p {
+.form > p {
   color: var(--color-grey-1);
 }
 
-form > .select__container {
+.form > .select__container {
   width: 100%;
   color: var(--color-grey-0);
   display: flex;
@@ -155,11 +155,11 @@ form > .select__container {
   gap: 8px;
 }
 
-form > .select__container > label {
+.form > .select__container > label {
   font-size: var(--font-4);
 }
 
-form > .select__container > select {
+.form > .select__container > select {
   background-color: var(--color-grey-2);
   border: none;
   border: 1px solid var(--color-grey-2);
@@ -167,7 +167,7 @@ form > .select__container > select {
   padding: 8px 14px;
 }
 
-form > .select__container > select > option {
+.form > .select__container > select > option {
   color: var(--color-grey-0);
   border: none;
 }
