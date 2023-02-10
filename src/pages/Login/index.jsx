@@ -62,7 +62,7 @@ const Login = ({ user, setUser }) => {
         </Header>
         <main>
           {loading ? <img className="loading" src={loadingAnim} /> : null}
-          <form onSubmit={handleSubmit(onSubmitFunction)}>
+          <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
             <h2 className="title-3">Login</h2>
             <Input
               label="Email"
