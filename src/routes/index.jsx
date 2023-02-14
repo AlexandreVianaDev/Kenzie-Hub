@@ -4,8 +4,9 @@ import Page404 from "../pages/Page404";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ProtectedRoutes from "../pages/ProtectedRoutes";
 
-const AppRoute = ({ user, setUser }) => {
+const AppRoute = () => {
   return (
     <>
       <Routes>
@@ -13,12 +14,13 @@ const AppRoute = ({ user, setUser }) => {
         <Route path="/register" element={<Register />} />
         <Route
           path="/login"
-          element={<Login user={user} setUser={setUser} />}
+          element={<Login />}
         />
         <Route
           path="/dashboard"
-          element={<Dashboard user={user} setUser={setUser} />}
-        />
+          element={<ProtectedRoutes/>}>
+            <Route index element={<Dashboard />}/>
+        </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>
     </>

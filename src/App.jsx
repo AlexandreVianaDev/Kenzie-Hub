@@ -4,11 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 import StyledContainer from "./components/Toast/style";
 
 function App() {
-  const [user, setUser] = useState({});
 
   return (
     <>
-      <AppRoute user={user} setUser={setUser} />
+      <AppRoute />
       <StyledContainer
         position="top-right"
         autoClose={5000}
