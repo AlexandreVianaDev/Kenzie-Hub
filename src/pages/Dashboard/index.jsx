@@ -1,40 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.svg";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
+import { UserContext } from "../../Providers/UserContext";
 import api from "../../services/api";
 import StyledDashboard from "./style";
 
-const Dashboard = ({ user, setUser }) => {
-  const token = localStorage.getItem("@TOKEN") || "";
-  const userID = localStorage.getItem("@USERID") || "";
+const Dashboard = () => {
 
-  const navigate = useNavigate();
+  const { user, userLogout, token } = useContext(UserContext)
 
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const headers = {
-          Authorization: `Bearer ${token}`,
-        };
-        const response = await api.get(`/profile`, { headers });
-        setUser(await response.data);
-      } catch (error) {
-        toast.error(error);
-      }
-    };
-    getUser();
-  }, []);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    token.length === 0 ? navigate("/login") : null;
-  }, [token]);
+  // useEffect(() => {
+  //   getProfile();
+  // }, []);
+
+  // useEffect(() => {
+  //   token.length === 0 ? navigate("/login") : null;
+  // }, [token]);
 
   const handleLogout = () => {
-    localStorage.clear();
-    navigate("/");
+    userLogout()
   };
 
   return (

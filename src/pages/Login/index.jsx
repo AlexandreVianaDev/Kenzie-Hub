@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import logo from "../../assets/images/logo.svg";
@@ -12,16 +12,15 @@ import LinkMedium from "../../components/LinkMedium";
 import StyledLogin from "./style";
 import Header from "../../components/Header";
 import loadingAnim from "../../assets/images/loading.svg";
+import { UserContext } from "../../Providers/UserContext";
 
-const Login = ({ user, setUser }) => {
-  const [loading, setLoading] = useState(false);
+const Login = () => {
+  
+  const { userLogin, loading, token } = useContext(UserContext)
 
-  const token = localStorage.getItem("@TOKEN") || "";
-  const userID = localStorage.getItem("@USERID") || "";
-
-  useEffect(() => {
-    token.length > 0 ? navigate("/dashboard") : null;
-  }, []);
+  // useEffect(() => {
+  //   token.length > 0 ? navigate("/dashboard") : null;
+  // }, []);
 
   const {
     register,
@@ -30,28 +29,11 @@ const Login = ({ user, setUser }) => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onSubmitFunction = (data) => {
-    const login = async () => {
-      try {
-        setLoading(true);
-        const response = await api.post("/sessions", data);
-        setUser(response.data.user);
-        localStorage.setItem("@TOKEN", response.data.token);
-        localStorage.setItem("@USERID", response.data.user.id);
-        toast.success("Login realizado");
-        navigate("/dashboard");
-      } catch (error) {
-        error.response.data?.message ===
-        "Incorrect email / password combination"
-          ? toast.error("Email ou senha incorretos")
-          : null;
-      } finally {
-        setLoading(false);
-      }
-    };
-    login();
+    // console.log(data)
+    userLogin(data);
   };
 
   return (
