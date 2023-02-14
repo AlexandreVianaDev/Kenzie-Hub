@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import logo from "../../assets/images/logo.svg";
@@ -11,16 +11,17 @@ import formSchema from "./validations";
 import LinkSmall from "../../components/LinkSmall";
 import StyledRegister from "./style";
 import Header from "../../components/Header";
+import { UserContext } from "../../Providers/UserContext";
 
 const Register = () => {
   const [disabled, setDisabled] = useState(false);
 
-  const token = localStorage.getItem("@TOKEN") || "";
-  const userID = localStorage.getItem("@USERID") || "";
+  const { userRegister, token } = useContext(UserContext)
 
-  useEffect(() => {
-    token.length > 0 ? navigate("/dashboard") : null;
-  }, []);
+  // useEffect(() => {
+  //   token.length > 0 ? navigate("/dashboard") : null;
+  // }, []);
+
 
   const {
     register,
@@ -30,22 +31,10 @@ const Register = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onSubmitFunction = (data) => {
-    const registerUser = async () => {
-      try {
-        const response = await api.post("/users", data);
-        navigate("/login");
-        toast.success("Cadastro realizado com sucesso");
-      } catch (error) {
-        error.response.data.message === "Email already exists"
-          ? toast.error("Email já existe")
-          : null;
-      } finally {
-      }
-    };
-    registerUser();
+    userRegister(data);
   };
 
   return (
