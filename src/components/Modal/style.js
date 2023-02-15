@@ -21,6 +21,7 @@ const StyledModal = styled.dialog`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: var(--font-family-1);
   }
 
   > div > div {
