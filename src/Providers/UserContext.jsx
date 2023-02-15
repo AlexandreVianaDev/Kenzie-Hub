@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
+import { TechContext } from "./TechContext";
 
 export const UserContext = createContext({});
 
@@ -12,6 +13,8 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userID, setUserID] = useState("");
   const [token, setToken] = useState("");
+
+  const { setTechs } = useContext(TechContext)
 
   // const token = localStorage.getItem("@TOKEN") || "";
   // const userID = localStorage.getItem("@USERID") || "";
@@ -40,10 +43,10 @@ export const UserProvider = ({ children }) => {
       userAutoLogin();
     }
   }, []);
-
+  
   const userLogin = async (data) => {
     try {
-      // setLoading(true);
+      setLoading(true);
       const response = await api.post("/sessions", data);
       // console.log(data)
       setUser(response.data.user);
@@ -58,7 +61,22 @@ export const UserProvider = ({ children }) => {
         ? toast.error("Email ou senha incorretos")
         : null;
     } finally {
-      // setLoading(false);
+      setLoading(false);
+    }
+  };
+
+  const userUpdate = async () => {
+    const tokenLS = localStorage.getItem("@TOKEN")
+    try {
+      const response = await api.get(`/profile`, {
+        headers: {
+          Authorization: `Bearer ${tokenLS}`,
+        },
+      });
+      setUser(await response.data);
+      setTechs(await response.data.techs);
+    } catch (error) {
+        toast.error(error);
     }
   };
 
@@ -94,7 +112,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ userLogin, userRegister, loading, userLogout, user, token }}
+      value={{ userLogin, userRegister, loading, setLoading, userLogout, user, token, userUpdate }}
     >
       {children}
     </UserContext.Provider>

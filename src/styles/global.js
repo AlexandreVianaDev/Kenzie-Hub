@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
   --gap-5: 1rem; /* 16 pixels */
   --gap-6: 0.875rem; /* 14 pixels */
 
-  --container-1: 1200px;
+  --container-1: 780px;
 
   --font-family-1: 'Inter', sans-serif;
 }
@@ -124,9 +124,18 @@ body {
   text-align: center;
 }
 
+.loading__container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
 .loading {
   position: absolute;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
 
 .form {
@@ -170,6 +179,24 @@ body {
 .form > .select__container > select > option {
   color: var(--color-grey-0);
   border: none;
+}
+
+.form .button-grey {
+  font-size: var(--font-2);
+  font-weight: var(--font-weight-2);
+  line-height: var(--line-heigth-5);
+  font-family: var(--font-family-1);
+  color: var(--color-white);
+  text-align: center;
+  border-radius: var(--radius-2);
+  background-color: var(--color-grey-1);
+  padding: 10px 18px;
+
+  
+}
+
+.form .button-grey:hover {
+  background-color: var(--color-grey-2);
 }
 `;
 

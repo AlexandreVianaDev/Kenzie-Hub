@@ -19,6 +19,11 @@ const StyledDashboard = styled.div`
     padding: 32px 0;
   }
 
+  main > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
   button {
     font-size: var(--font-4);
     font-weight: var(--font-weight-2);
@@ -32,6 +37,15 @@ const StyledDashboard = styled.div`
     :hover {
       background-color: var(--color-grey-2);
     }
+  }
+
+  ul {
+    background-color: var(--color-grey-3);
+    padding: 16px 8px;
+    border-radius: var(--radius-1);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
 
   @media screen and (min-width: 769px) {
