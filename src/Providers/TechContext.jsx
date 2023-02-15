@@ -59,7 +59,6 @@ export const TechProvider = ({ children }) => {
   };
 
   const deleteTech = async (techID) => {
-    console.log("tentando deletar");
     try {
       setLoading(true);
       const response = await api.delete(`/users/techs/${techID}`, {

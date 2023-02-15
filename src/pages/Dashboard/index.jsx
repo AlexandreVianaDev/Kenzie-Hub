@@ -1,46 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useContext } from "react";
 import logo from "../../assets/images/logo.svg";
 import Header from "../../components/Header";
-import Input from "../../components/Input";
-import Modal from "../../components/Modal";
 import NavBar from "../../components/NavBar";
 import Tech from "../../components/Tech";
 import { UserContext } from "../../Providers/UserContext";
-import api from "../../services/api";
 import StyledDashboard from "./style";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Button from "../../components/Button";
 import { TechContext } from "../../Providers/TechContext";
 import ModalEditTech from "../../components/ModalEditTech";
 import ModalCreateTech from "../../components/ModalCreateTech";
 import loadingAnim from "../../assets/images/loading.svg";
-import { useRef } from "react";
 
 const Dashboard = () => {
-  const { user, userLogout, token, loading } = useContext(UserContext);
+  const { user, userLogout, loading } = useContext(UserContext);
 
-  const {
-    createTech,
-    editTech,
-    deleteTech,
-    techs,
-    setTechs,
-    techEdit,
-    setTechEdit,
-    modal,
-    setModal,
-  } = useContext(TechContext);
-
-  // useEffect(() => {
-  //   setTechs(user.techs);
-  // }, []);
-
-  // useEffect(()=>{
-  //   console.log(techs)
-  // },[techs])
+  const { techs, modal, setModal } = useContext(TechContext);
 
   const handleLogout = () => {
     userLogout();
@@ -48,13 +21,7 @@ const Dashboard = () => {
 
   const handleModalCreateTech = () => {
     setModal("createTech");
-    // console.log(modal);
   };
-
-  // const handleModalEditTech = (tech) => {
-  //   setTechEdit(tech);
-  //   setModal("editTech");
-  // };
 
   return (
     <>

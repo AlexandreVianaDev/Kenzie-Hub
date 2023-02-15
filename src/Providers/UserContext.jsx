@@ -45,7 +45,6 @@ export const UserProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await api.post("/sessions", data);
-      // console.log(data)
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.token);
       setToken(localStorage.getItem("@TOKEN") || "");

@@ -137,11 +137,6 @@ body {
   margin: 0 auto;
 }
 
-.loading {
-  /* position: absolute; */
-  /* margin: 0 auto; */
-}
-
 .form {
   background-color: var(--color-grey-3);
   border-radius: var(--radius-1);
