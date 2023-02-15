@@ -23,7 +23,6 @@ const ModalCreateTech = () => {
   };
 
   const handleCreateTech = (data) => {
-    console.log("a");
     createTech(data);
     handleCloseModal();
   };
