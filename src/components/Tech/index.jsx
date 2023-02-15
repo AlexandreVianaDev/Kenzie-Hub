@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
-import { TechContext } from '../../Providers/TechContext';
-import StyledTech from './style'
+import React, { useContext } from "react";
+import { TechContext } from "../../Providers/TechContext";
+import StyledTech from "./style";
 
- const Tech = ({children, tech}) => {
-
-  const { setTechEdit, setModal } = useContext(TechContext)
+const Tech = ({ children, tech }) => {
+  const { setTechEdit, setModal } = useContext(TechContext);
 
   const handleModalEditTech = (tech) => {
     setTechEdit(tech);
@@ -13,9 +12,9 @@ import StyledTech from './style'
 
   return (
     <StyledTech onClick={() => handleModalEditTech(tech)}>
-        {children}
+      {children}
     </StyledTech>
-  )
-}
+  );
+};
 
-export default Tech
+export default Tech;

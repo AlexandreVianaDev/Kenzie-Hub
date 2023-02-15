@@ -12,14 +12,9 @@ const AppRoute = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-        <Route
-          path="/dashboard"
-          element={<ProtectedRoutes/>}>
-            <Route index element={<Dashboard />}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<ProtectedRoutes />}>
+          <Route index element={<Dashboard />} />
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>

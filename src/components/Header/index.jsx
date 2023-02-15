@@ -2,7 +2,11 @@ import React from "react";
 import StyledHeader from "./style";
 
 const Header = ({ children }) => {
-  return <StyledHeader>{children}</StyledHeader>;
+  return (
+    <StyledHeader>
+      <div className="container">{children}</div>
+    </StyledHeader>
+  );
 };
 
 export default Header;

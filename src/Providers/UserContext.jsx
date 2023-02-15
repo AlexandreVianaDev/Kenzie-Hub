@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
-import { TechContext } from "./TechContext";
 
 export const UserContext = createContext({});
 
@@ -14,36 +13,34 @@ export const UserProvider = ({ children }) => {
   const [userID, setUserID] = useState("");
   const [token, setToken] = useState("");
 
-  const { setTechs } = useContext(TechContext)
-
-  // const token = localStorage.getItem("@TOKEN") || "";
-  // const userID = localStorage.getItem("@USERID") || "";
-
-  // get token?
-
   // AUTOLOGIN
   useEffect(() => {
     setToken(localStorage.getItem("@TOKEN") || "");
-    const tokenLS = localStorage.getItem("@TOKEN")
+    const tokenLS = localStorage.getItem("@TOKEN");
     if (tokenLS) {
       const userAutoLogin = async () => {
         try {
+          setLoading(true);
           const response = await api.get(`/profile`, {
             headers: {
               Authorization: `Bearer ${tokenLS}`,
             },
           });
           setUser(await response.data);
-          navigate("/dashboard");
+          window.location.pathname === "/login" || "/register"
+            ? navigate("/dashboard")
+            : null;
         } catch (error) {
-            toast.error(error);
-            localStorage.clear();
+          toast.error(error);
+          localStorage.clear();
+        } finally {
+          setLoading(false);
         }
       };
       userAutoLogin();
     }
   }, []);
-  
+
   const userLogin = async (data) => {
     try {
       setLoading(true);
@@ -65,23 +62,9 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const userUpdate = async () => {
-    const tokenLS = localStorage.getItem("@TOKEN")
-    try {
-      const response = await api.get(`/profile`, {
-        headers: {
-          Authorization: `Bearer ${tokenLS}`,
-        },
-      });
-      setUser(await response.data);
-      setTechs(await response.data.techs);
-    } catch (error) {
-        toast.error(error);
-    }
-  };
-
   const userRegister = async (data) => {
     try {
+      setLoading(true);
       const response = await api.post("/users", data);
       navigate("/login");
       toast.success("Cadastro realizado com sucesso");
@@ -90,6 +73,7 @@ export const UserProvider = ({ children }) => {
         ? toast.error("Email já existe")
         : null;
     } finally {
+      setLoading(false);
     }
   };
 
@@ -98,21 +82,17 @@ export const UserProvider = ({ children }) => {
     navigate("/");
   };
 
-  // const getProfile = async () => {
-  //     try {
-  //       const headers = {
-  //         Authorization: `Bearer ${token}`,
-  //       };
-  //       const response = await api.get(`/profile`, { headers });
-  //       setUser(await response.data);
-  //     } catch (error) {
-  //       toast.error(error);
-  //     }
-  //   };
-
   return (
     <UserContext.Provider
-      value={{ userLogin, userRegister, loading, setLoading, userLogout, user, token, userUpdate }}
+      value={{
+        userLogin,
+        userRegister,
+        loading,
+        setLoading,
+        userLogout,
+        user,
+        token,
+      }}
     >
       {children}
     </UserContext.Provider>

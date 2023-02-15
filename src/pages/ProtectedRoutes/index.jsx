@@ -4,8 +4,9 @@ import { UserContext } from "../../Providers/UserContext";
 
 const ProtectedRoutes = () => {
   const { user } = useContext(UserContext);
+  const tokenLS = localStorage.getItem("@TOKEN");
 
-  return <>{user ? <Outlet /> : <Navigate to="/" />}</>;
+  return <>{user || tokenLS ? <Outlet /> : <Navigate to="/" />}</>;
 };
 
 export default ProtectedRoutes;
