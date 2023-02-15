@@ -43,7 +43,9 @@ const Login = () => {
           <img src={logo} />
         </Header>
         <main>
-          {loading ? <img className="loading" src={loadingAnim} /> : null}
+          {/* {loading ? <img className="loading" src={loadingAnim} /> : null}
+           */}
+          {loading ? <div className="loading__container"><img className="loading" src={loadingAnim} /></div> : null}
           <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
             <h2 className="title-3">Login</h2>
             <Input

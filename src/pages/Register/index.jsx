@@ -16,7 +16,7 @@ import { UserContext } from "../../Providers/UserContext";
 const Register = () => {
   const [disabled, setDisabled] = useState(false);
 
-  const { userRegister, token } = useContext(UserContext)
+  const { userRegister, token, loading } = useContext(UserContext)
 
   // useEffect(() => {
   //   token.length > 0 ? navigate("/dashboard") : null;
@@ -44,6 +44,7 @@ const Register = () => {
         <LinkSmall to={"/login"}>Voltar</LinkSmall>
       </Header>
       <main>
+       {loading ? <div className="loading__container"><img className="loading" src={loadingAnim} /></div> : null}
         <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
           <h2 className="title-1">Crie sua conta</h2>
           <p className="headline text-center">Rapido e grátis, vamos nessa</p>
@@ -100,7 +101,6 @@ const Register = () => {
             <select
               label="Selecionar módulo"
               type="text"
-              placeholder="Digite aqui seu nome"
               id="course_module"
               {...register("course_module")}
             >
