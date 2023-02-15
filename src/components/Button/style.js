@@ -7,23 +7,23 @@ const StyledButton = styled.button`
   border-radius: var(--radius-2);
   background-color: var(--color-primary);
   color: var(--color-white);
-  padding: 10px 22px;
+  padding: 10px 16px;
 
-:hover {
+  :hover {
     background-color: var(--color-primary-focus);
-}
+  }
 
-:disabled {
+  :disabled {
     background-color: var(--color-primary-negative);
-}
+  }
 
-.button-disabled {
+  .button-disabled {
     background-color: var(--color-grey-1);
-}
+  }
 
-.button-disabled:hover {
+  .button-disabled:hover {
     background-color: var(--color-grey-2);
-}
-`
+  }
+`;
 
-export default StyledButton
+export default StyledButton;

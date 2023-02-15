@@ -8,7 +8,9 @@ const StyledNavBar = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding-top: 24px;
+  padding-bottom: 24px;
   width: 90%;
+  background-color: var(--bg-color)
 `;
 
 export default StyledNavBar;
