@@ -125,16 +125,20 @@ body {
 }
 
 .loading__container {
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
 }
 
 .loading {
-  position: absolute;
+  /* position: absolute; */
   /* margin: 0 auto; */
 }
 

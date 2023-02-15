@@ -1,23 +1,22 @@
 import styled from "styled-components";
 
 const StyledModal = styled.dialog`
-  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  max-width: 369px;
-  top: 150px;
+  height: 100%;
+  position: absolute;
+  top: 0;
   margin: 0 auto;
   background: rgba(18, 18, 20, 0.5);
-  /* border: 2px solid red; */
-
-  ::backdrop {
-    /* background: rgba(18, 18, 20, 0.5); */
-  }
 
   > div {
     background-color: var(--color-grey-3);
     border-radius: var(--radius-1);
     width: 100%;
-    /* width: 90vw; */
+    max-width: 90vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,6 +48,12 @@ const StyledModal = styled.dialog`
 
   .tech__controls > button {
     width: fit-content;
+  }
+
+  @media screen and (min-width: 400px) {
+    > div {
+      max-width: 369px;
+    }
   }
 `;
 

@@ -1,15 +1,13 @@
-import React from 'react'
-import { TechProvider } from './TechContext'
-import { UserProvider } from './UserContext'
+import React from "react";
+import { TechProvider } from "./TechContext";
+import { UserProvider } from "./UserContext";
 
-const Providers = ({children}) => {
+const Providers = ({ children }) => {
   return (
     <UserProvider>
-      <TechProvider>
-        {children}
-      </TechProvider>
+      <TechProvider>{children}</TechProvider>
     </UserProvider>
-  )
-}
+  );
+};
 
-export default Providers
+export default Providers;

@@ -1,10 +1,8 @@
-import { useState } from "react";
 import AppRoute from "./routes";
 import "react-toastify/dist/ReactToastify.css";
 import StyledContainer from "./components/Toast/style";
 
 function App() {
-
   return (
     <>
       <AppRoute />

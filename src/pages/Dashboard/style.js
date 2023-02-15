@@ -2,14 +2,18 @@ import styled from "styled-components";
 
 const StyledDashboard = styled.div`
   header {
-    border-top: 1px solid var(--color-grey-2);
+    width: 100vw;
     border-bottom: 1px solid var(--color-grey-2);
-    margin-top: 90px;
-    padding: 32px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+
+    > div {
+      margin-top: 90px;
+      padding: 32px 0;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
   }
 
   main {
@@ -49,7 +53,7 @@ const StyledDashboard = styled.div`
   }
 
   @media screen and (min-width: 769px) {
-    header {
+    header > div {
       flex-direction: row;
     }
   }
