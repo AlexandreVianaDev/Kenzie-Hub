@@ -6,20 +6,9 @@ import formSchema from "./validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../Input";
 import Button from "../Button";
-import { UserContext } from "../../Providers/UserContext";
 
-function ModalEditTech() {
-  const {
-    editTech,
-    deleteTech,
-    techs,
-    setTechs,
-    techEdit,
-    setTechEdit,
-    modal,
-    setModal,
-  } = useContext(TechContext);
-
+const ModalEditTech = () => {
+  const { editTech, deleteTech, techEdit, setModal } = useContext(TechContext);
 
   const {
     register,
@@ -27,6 +16,10 @@ function ModalEditTech() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
+    defaultValues: {
+      title: techEdit.title,
+      status: techEdit.status,
+    },
   });
 
   const handleCloseModal = () => {
@@ -34,15 +27,15 @@ function ModalEditTech() {
   };
 
   const handleEditTech = (data) => {
-    console.log(data)
+    console.log(data);
     editTech(data, techEdit.id);
-    handleCloseModal()
+    handleCloseModal();
   };
 
   const handleDeleteTech = (techID) => {
     console.log(techID);
     deleteTech(techID);
-    handleCloseModal()
+    handleCloseModal();
   };
 
   return (
@@ -60,7 +53,7 @@ function ModalEditTech() {
             type="text"
             placeholder="Digite o nome da tecnologia"
             id="title"
-            value={techEdit.title}
+            {...register("title")}
             disabled
           />
           <div className="select__container">
@@ -69,7 +62,6 @@ function ModalEditTech() {
               label="Selecionar módulo"
               type="text"
               id="status"
-              defaultValue={techEdit.status}
               {...register("status")}
             >
               <option value="Iniciante">Iniciante</option>
@@ -94,6 +86,6 @@ function ModalEditTech() {
       </Modal>
     </>
   );
-}
+};
 
 export default ModalEditTech;

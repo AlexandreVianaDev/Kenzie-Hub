@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import logo from "../../assets/images/logo.svg";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import api from "../../services/api";
-import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import formSchema from "./validations";
 import LinkMedium from "../../components/LinkMedium";
@@ -15,12 +12,7 @@ import loadingAnim from "../../assets/images/loading.svg";
 import { UserContext } from "../../Providers/UserContext";
 
 const Login = () => {
-  
-  const { userLogin, loading, token } = useContext(UserContext)
-
-  // useEffect(() => {
-  //   token.length > 0 ? navigate("/dashboard") : null;
-  // }, []);
+  const { userLogin, loading } = useContext(UserContext);
 
   const {
     register,
@@ -29,10 +21,8 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-  // const navigate = useNavigate();
 
   const onSubmitFunction = (data) => {
-    // console.log(data)
     userLogin(data);
   };
 
@@ -43,9 +33,7 @@ const Login = () => {
           <img src={logo} />
         </Header>
         <main>
-          {/* {loading ? <img className="loading" src={loadingAnim} /> : null}
-           */}
-          {loading ? <div className="loading__container"><img className="loading" src={loadingAnim} /></div> : null}
+          {/* {loading ? <div className="loading__container"><img className="loading" src={loadingAnim} /></div> : null} */}
           <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
             <h2 className="title-3">Login</h2>
             <Input
@@ -72,6 +60,11 @@ const Login = () => {
           </form>
         </main>
       </StyledLogin>
+      {loading ? (
+        <div className="loading__container">
+          <img className="loading" src={loadingAnim} />
+        </div>
+      ) : null}
     </>
   );
 };

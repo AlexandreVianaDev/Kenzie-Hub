@@ -17,6 +17,7 @@ import { TechContext } from "../../Providers/TechContext";
 import ModalEditTech from "../../components/ModalEditTech";
 import ModalCreateTech from "../../components/ModalCreateTech";
 import loadingAnim from "../../assets/images/loading.svg";
+import { useRef } from "react";
 
 const Dashboard = () => {
   const { user, userLogout, token, loading } = useContext(UserContext);
@@ -57,7 +58,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <StyledDashboard className="container">
+      <StyledDashboard>
         <NavBar>
           <img src={logo} alt="Kenzie Hub" />
           <button onClick={handleLogout}>Sair</button>
@@ -66,24 +67,30 @@ const Dashboard = () => {
           <h2 className="title-1">{`Olá, ${user?.name}`}</h2>
           <p className="headline">{user?.course_module}</p>
         </Header>
-        <main>
+        <main className="container">
           <div>
             <h2 className="title-1">Tecnologias</h2>
             <button onClick={handleModalCreateTech}>+</button>
           </div>
-          {loading ? <div className="loading__container"><img className="loading" src={loadingAnim} /></div> : null}
           <ul>
-            {techs
-              ? techs.map((tech) => (
-                  <Tech tech={tech} key={tech?.id}>
-                    <span>{tech.title}</span>
-                    <span>{tech.status}</span>
-                  </Tech>
-                ))
-              : null}
+            {techs.length > 0 ? (
+              techs.map((tech) => (
+                <Tech tech={tech} key={tech?.id}>
+                  <span>{tech.title}</span>
+                  <span>{tech.status}</span>
+                </Tech>
+              ))
+            ) : (
+              <li>Ainda não há tecnologias cadastradas</li>
+            )}
           </ul>
         </main>
       </StyledDashboard>
+      {loading ? (
+        <div className="loading__container">
+          <img className="loading" src={loadingAnim} />
+        </div>
+      ) : null}
       {modal === "createTech" ? <ModalCreateTech /> : null}
       {modal === "editTech" ? <ModalEditTech /> : null}
     </>
