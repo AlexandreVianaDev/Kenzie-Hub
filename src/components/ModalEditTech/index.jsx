@@ -27,13 +27,11 @@ const ModalEditTech = () => {
   };
 
   const handleEditTech = (data) => {
-    console.log(data);
     editTech(data, techEdit.id);
     handleCloseModal();
   };
 
   const handleDeleteTech = (techID) => {
-    console.log(techID);
     deleteTech(techID);
     handleCloseModal();
   };
@@ -74,7 +72,6 @@ const ModalEditTech = () => {
             <Button type="submit">Salvar alterações</Button>
             <button
               onClick={() => {
-                console.log("cliquei");
                 handleDeleteTech(techEdit.id);
               }}
               className="button-grey"
