@@ -1,5 +1,6 @@
 # Resumo do projeto
-No projeto Kenzie Hub é possível fazer interações com as tecnologias que você tem no seu perfil (cadastrar tecnologia, editar e deletar), cadastro/login de usuário com autologin, uso de localStorage para salvar o JWT (token) e muito mais.
+Kenzie Hub é uma aplicação para controle de tecnologias/linguagens conhecidas, onde você pode definir seu nível de conhecimento (status) que tem naquela tecnologia.
+É possível fazer interações com as tecnologias que você tem no seu perfil (cadastrar tecnologia, editar e deletar), cadastro/login de usuário com autologin, uso de localStorage para salvar o JWT (token) e muito mais.
 
 ## ✔️ Técnicas e tecnologias utilizadas
 
