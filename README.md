@@ -18,6 +18,6 @@ No projeto Kenzie Hub é possível fazer interações com as tecnologias que voc
 
 # 🛠️ Abrir e rodar o projeto
 
-**Basta acessar a página no vercel, criar sua conta e adicionar tecnologias.**
+**Basta acessar a página no vercel, criar sua conta, fazer o login e adicionar tecnologias para poder gerenciá-las.**
 
 Vercel: https://react-entrega-kenzie-hub-alexandre-viana-dev.vercel.app/
